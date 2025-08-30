@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>PROJECT: Borealis</title>
+
+<!-- HTML head -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="home-page">
+<div class="background-video-container">
+    <video class="background-video is-visible" muted playsinline data-video-player="1">
+        <!-- Browser will try this first -->
+        <source src="images/background-video.webm" type="video/webm">
+        <!-- If it can't play WebM, it will use this MP4 file -->
+        <source src="images/background-video.mp4" type="video/mp4">
+    </video>
+    <video class="background-video" muted playsinline data-video-player="2">
+        <source src="images/background-video.webm" type="video/webm">
+        <source src="images/background-video.mp4" type="video/mp4">
+    </video>
+</div>
+<header id="main-header">
+    <div class="container">
+        <div class="header-left">
+            <a href="index.html" class="logo"><img src="../frontend/images/logo.png" alt="Borealis Logo"></a>
+            <nav class="main-nav">
+                <a href="index.html#products">Collection</a>
+                <a href="index.html#philosophy">Technologies</a>
+            </nav>
+        </div>
+
+        <div id="search-container" class="search-container">
+            <form id="search-form" class="search-form">
+                <button type="submit" aria-label="Search"><i class="fas fa-search"></i></button>
+                <input type="search" id="search-input" placeholder="Search...">
+            </form>
+            <div id="search-results-dropdown" class="search-results-dropdown"></div>
+        </div>
+
+        <div class="header-actions">
+            <div id="user-actions" class="user-actions" style="display: none;">
+                <a id="profile-link" href="profile.html">Profile</a>
+                <span class="auth-separator">/</span>
+                <a id="admin-link" href="admin.html" style="display: none;">Admin</a>
+                <span id="admin-separator" class="auth-separator" style="display: none;">/</span>
+                <button id="logout-btn" class="logout-btn">Logout</button>
+            </div>
+            <div id="auth-links" class="auth-links">
+                <a href="login.html">Login</a>
+                <span>/</span>
+                <a href="register.html">Register</a>
+            </div>
+            <div id="cart-anchor" class="header-cart">
+                <button id="open-cart-btn" class="header-cart-btn" aria-label="Shopping Cart">
+                    <i class="fas fa-shopping-cart"></i>
+                     Cart (<span id="cart-count" class="cart-count">0</span>)
+                </button>
+            </div>
+        </div>
+        
+        <div class="hamburger-menu" id="hamburger-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</header>
+
+<!-- Mobile Navigation -->
+<div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>
+<nav class="mobile-nav" id="mobile-nav">
+    <div class="mobile-nav-menu">
+        <a href="index.html#products">Collection</a>
+        <a href="index.html#philosophy">Technologies</a>
+        
+        <div id="mobile-auth-links">
+            <a href="login.html">Login</a>
+            <a href="register.html">Register</a>
+        </div>
+        
+        <div id="mobile-user-actions" style="display: none;">
+            <a href="profile.html">Profile</a>
+            <a href="admin.html" id="mobile-admin-link" style="display: none;">Admin</a>
+            <a href="#" id="mobile-logout-btn">Logout</a>
+        </div>
+    </div>
+    
+    <div class="mobile-nav-actions">
+        <a href="#" class="mobile-cart-btn" id="mobile-open-cart-btn">
+            <i class="fas fa-shopping-cart"></i>
+            Cart (<span id="mobile-cart-count">0</span>)
+        </a>
+    </div>
+</nav>
+
+<main>
+    <section id="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="fade-in logo-gradient">PROJECT: Borealis</h1>
+            <p class="hero-subheading fade-in">A Full-Stack Showcase</p>
+            <p class="fade-in">This is a complete e-commerce web application built from the ground up. Explore its features below.</p>
+            <a href="#philosophy" class="btn-primary fade-in">Learn About the Tech</a>
+        </div>
+    </section>
+
+    <section id="products">
+      <div class="container">
+        <div class="content-section">
+          <h2 class="section-title">Featured Wares</h2>
+          <div class="product-grid">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="philosophy">
+      <div class="container">
+        <div class="content-section">
+          <h2 class="section-title">About This Project</h2>
+          <p class="philosophy-text" style="text-align: left; max-width: 800px; margin-left: auto; margin-right: auto;">
+            <strong>Borealis is a comprehensive MERN stack e-commerce project designed to demonstrate a wide range of web development skills.</strong><br><br>
+            It functions as a complete platform, featuring user authentication, a product catalog, guest and user shopping carts, a full checkout process with Stripe integration, and a complete admin dashboard for managing products, orders, and users. Below is a detailed look at the technology stack.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="technologies" style="padding-top: 0;">
+      <div class="container">
+        <div class="content-section">
+          <h2 class="section-title" style="margin-bottom: 3rem;">Technologies Used</h2>
+          <div class="tech-grid">
+    
+            <div class="tech-card">
+              <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Node.js</title><path d="M11.998,24c-0.321,0-0.641-0.084-0.922-0.247l-2.936-1.737c-0.438-0.245-0.224-0.332-0.08-0.383 c0.585-0.203,0.703-0.25,1.328-0.604c0.065-0.037,0.151-0.023,0.218,0.017l2.256,1.339c0.082,0.045,0.197,0.045,0.272,0l8.795-5.076 c0.082-0.047,0.134-0.141,0.134-0.238V6.921c0-0.099-0.053-0.192-0.137-0.242l-8.791-5.072c-0.081-0.047-0.189-0.047-0.271,0 L3.075,6.68C2.99,6.729,2.936,6.825,2.936,6.921v10.15c0,0.097,0.054,0.189,0.139,0.235l2.409,1.392 c1.307,0.654,2.108-0.116,2.108-0.89V7.787c0-0.142,0.114-0.253,0.256-0.253h1.115c0.139,0,0.255,0.112,0.255,0.253v10.021 c0,1.745-0.95,2.745-2.604,2.745c-0.508,0-0.909,0-2.026-0.551L2.28,18.675c-0.57-0.329-0.922-0.945-0.922-1.604V6.921 c0-0.659,0.353-1.275,0.922-1.603l8.795-5.082c0.557-0.315,1.296-0.315,1.848,0l8.794,5.082c0.57,0.329,0.924,0.944,0.924,1.603 v10.15c0,0.659-0.354,1.273-0.924,1.604l-8.794,5.078C12.643,23.916,12.324,24,11.998,24z M19.099,13.993 c0-1.9-1.284-2.406-3.987-2.763c-2.731-0.361-3.009-0.548-3.009-1.187c0-0.528,0.235-1.233,2.258-1.233 c1.807,0,2.473,0.389,2.747,1.607c0.024,0.115,0.129,0.199,0.247,0.199h1.141c0.071,0,0.138-0.031,0.186-0.081 c0.048-0.054,0.074-0.123,0.067-0.196c-0.177-2.098-1.571-3.076-4.388-3.076c-2.508,0-4.004,1.058-4.004,2.833 c0,1.925,1.488,2.457,3.895,2.695c2.88,0.282,3.103,0.703,3.103,1.269c0,0.983-0.789,1.402-2.642,1.402 c-2.327,0-2.839-0.584-3.011-1.742c-0.02-0.124-0.126-0.215-0.253-0.215h-1.137c-0.141,0-0.254,0.112-0.254,0.253 c0,1.482,0.806,3.248,4.655,3.248C17.501,17.007,19.099,15.91,19.099,13.993z"/></svg>
+              <h3>Node.js + Express.js</h3>
+            </div>
+    
+            <div class="tech-card">
+              <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>MongoDB</title><path d="M17.193 9.555c-1.264-5.58-4.252-7.414-4.573-8.115-.28-.394-.53-.954-.735-1.44-.036.495-.055.685-.523 1.184-.723.566-4.438 3.682-4.74 10.02-.282 5.912 4.27 9.435 4.888 9.884l.07.05A73.49 73.49 0 0111.91 24h.481c.114-1.032.284-2.056.51-3.07.417-.296.604-.463.85-.693a11.342 11.342 0 003.639-8.464c.01-.814-.103-1.662-.197-2.218zm-5.336 8.195s0-8.291.275-8.29c.213 0 .49 10.695.49 10.695-.381-.045-.765-1.76-.765-2.405z"/></svg>
+              <h3>MongoDB</h3>
+            </div>
+    
+            <div class="tech-card">
+              <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>JavaScript</title><path d="M0 0h24v24H0V0zm22.034 18.276c-.175-1.095-.888-2.015-3.003-2.873-.736-.345-1.554-.585-1.797-1.14-.091-.33-.105-.51-.046-.705.15-.646.915-.84 1.515-.66.39.12.75.42.976.9 1.034-.676 1.034-.676 1.755-1.125-.27-.42-.404-.601-.586-.78-.63-.705-1.469-1.065-2.834-1.034l-.705.089c-.676.165-1.32.525-1.71 1.005-1.14 1.291-.811 3.541.569 4.471 1.365 1.02 3.361 1.244 3.616 2.205.24 1.17-.87 1.545-1.966 1.41-.811-.18-1.26-.586-1.755-1.336l-1.83 1.051c.21.48.45.689.81 1.109 1.74 1.756 6.09 1.666 6.871-1.004.029-.09.24-.705.074-1.65l.046.067zm-8.983-7.245h-2.248c0 1.938-.009 3.864-.009 5.805 0 1.232.063 2.363-.138 2.711-.33.689-1.18.601-1.566.48-.396-.196-.597-.466-.83-.855-.063-.105-.11-.196-.127-.196l-1.825 1.125c.305.63.75 1.172 1.324 1.517.855.51 2.004.675 3.207.405.783-.226 1.458-.691 1.811-1.411.51-.93.402-2.07.397-3.346.012-2.054 0-4.109 0-6.179l.004-.056z"/></svg>
+              <h3>Vanilla JS</h3>
+            </div>
+    
+          </div>
+        </div>
+      </div>
+    </section>
+
+</main>
+
+<div id="product-modal-overlay" class="modal-overlay"></div>
+<div id="product-modal" class="modal">
+    <button id="modal-close-btn" class="modal-close-btn">&times;</button>
+    <div id="modal-content" class="modal-content"></div>
+</div>
+
+<div id="cart-modal-overlay" class="modal-overlay"></div>
+<div id="cart-modal" class="cart-modal">
+    <div class="cart-modal-header">
+        <h2>Your Cart</h2>
+        <button id="cart-modal-close-btn" class="modal-close-btn">&times;</button>
+    </div>
+    <div id="cart-modal-content" class="cart-modal-content">
+    </div>
+    <div class="cart-modal-footer">
+        <div class="summary-line">
+            <span>Subtotal</span>
+            <span id="cart-modal-subtotal">$0.00</span>
+        </div>
+        <a href="checkout.html" class="btn-checkout">Proceed to Checkout</a>
+    </div>
+</div>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2025 Borealis. A Full-Stack Portfolio Project.</p>
+    </div>
+</footer>
+
+<script src="shared.js"></script>
+<script src="script.js"></script>
+<script src="particles.js"></script>
+
+</body>
+</html>

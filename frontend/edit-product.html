@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Product - Borealis</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="other-page">
+
+<header id="main-header">
+    <div class="container">
+        <div class="header-left">
+            <a href="index.html" class="logo"><img src="../frontend/images/logo.png" alt="Borealis Logo"></a>
+            <nav class="main-nav">
+                <a href="index.html#products">Collection</a>
+                <a href="index.html#philosophy">Philosophy</a>
+            </nav>
+        </div>
+        <div id="search-container" class="search-container">
+            <form id="search-form" class="search-form">
+                <button type="submit" aria-label="Search"><i class="fas fa-search"></i></button>
+                <input type="search" id="search-input" placeholder="Search...">
+            </form>
+            <div id="search-results-dropdown" class="search-results-dropdown"></div>
+        </div>
+        <div class="header-actions">
+            <div id="user-actions" class="user-actions" style="display: none;">
+                <a id="profile-link" href="profile.html">Profile</a>
+                <span class="auth-separator">/</span>
+                <a id="admin-link" href="admin.html" style="display: none;">Admin</a>
+                <span id="admin-separator" class="auth-separator" style="display: none;">/</span>
+                <button id="logout-btn" class="logout-btn">Logout</button>
+            </div>
+            <div id="auth-links" class="auth-links">
+                <a href="login.html">Login</a>
+                <span>/</span>
+                <a href="register.html">Register</a>
+            </div>
+            <div id="cart-anchor" class="header-cart">
+                <button id="open-cart-btn" class="header-cart-btn" aria-label="Shopping Cart">
+                    <i class="fas fa-shopping-cart"></i>
+                     Cart (<span id="cart-count" class="cart-count">0</span>)
+                </button>
+            </div>
+        </div>
+        <div class="hamburger-menu" id="hamburger-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</header>
+
+<!-- Mobile Navigation -->
+<div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>
+<nav class="mobile-nav" id="mobile-nav">
+    <div class="mobile-nav-menu">
+        <a href="index.html#products">Collection</a>
+        <a href="index.html#philosophy">Technologies</a>
+        <div id="mobile-auth-links">
+            <a href="login.html">Login</a>
+            <a href="register.html">Register</a>
+        </div>
+        <div id="mobile-user-actions" style="display: none;">
+            <a href="profile.html">Profile</a>
+            <a href="admin.html" id="mobile-admin-link" style="display: none;">Admin</a>
+            <a href="#" id="mobile-logout-btn">Logout</a>
+        </div>
+    </div>
+    <div class="mobile-nav-actions">
+        <a href="#" class="mobile-cart-btn" id="mobile-open-cart-btn">
+            <i class="fas fa-shopping-cart"></i>
+            Cart (<span id="mobile-cart-count">0</span>)
+        </a>
+    </div>
+</nav>
+
+<main>
+    <section id="auth-page">
+        <div class="auth-container">
+            <h1 id="form-title" class="page-title">Loading...</h1>
+            
+            <form id="product-form" class="auth-form">
+                <div id="error-message" class="error-message"></div>
+                <div class="form-group">
+                    <label for="name">Product Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="price">Price</label>
+                    <input type="text" id="price" name="price" required placeholder="$0.00">
+                </div>
+                <div class="form-group">
+                    <label for="imageUrl">Image URL</label>
+                    <input type="url" id="imageUrl" name="imageUrl" required placeholder="https://images.unsplash.com/...">
+                </div>
+                
+                <button type="submit" class="btn-primary">Save Product</button>
+            </form>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2025 Borealis. A Full-Stack Portfolio Project.</p>
+    </div>
+</footer>
+
+<div id="cart-modal-overlay" class="modal-overlay"></div>
+<div id="cart-modal" class="cart-modal">
+    <div class="cart-modal-header">
+        <h2>Your Cart</h2>
+        <button id="cart-modal-close-btn" class="modal-close-btn">&times;</button>
+    </div>
+    <div id="cart-modal-content" class="cart-modal-content">
+    </div>
+    <div class="cart-modal-footer">
+        <div class="summary-line">
+            <span>Subtotal</span>
+            <span id="cart-modal-subtotal">$0.00</span>
+        </div>
+        <a href="checkout.html" class="btn-checkout">Proceed to Checkout</a>
+    </div>
+</div>
+
+<script src="shared.js"></script>
+<script src="edit-product.js"></script>
+
+</body>
+</html>

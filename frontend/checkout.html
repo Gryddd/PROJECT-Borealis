@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Borealis</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body class="other-page">
+
+<header id="main-header">
+    <div class="container">
+        <div class="header-left">
+            <a href="index.html" class="logo"><img src="../frontend/images/logo.png" alt="Borealis Logo"></a>
+            <nav class="main-nav">
+                <a href="index.html#products">Collection</a>
+                <a href="index.html#philosophy">Philosophy</a>
+            </nav>
+        </div>
+        <div id="search-container" class="search-container">
+            <form id="search-form" class="search-form">
+                <button type="submit" aria-label="Search"><i class="fas fa-search"></i></button>
+                <input type="search" id="search-input" placeholder="Search...">
+            </form>
+            <div id="search-results-dropdown" class="search-results-dropdown"></div>
+        </div>
+        <div class="header-actions">
+            <div id="user-actions" class="user-actions" style="display: none;">
+                <a id="profile-link" href="profile.html">Profile</a>
+                <span class="auth-separator">/</span>
+                <a id="admin-link" href="admin.html" style="display: none;">Admin</a>
+                <span id="admin-separator" class="auth-separator" style="display: none;">/</span>
+                <button id="logout-btn" class="logout-btn">Logout</button>
+            </div>
+            <div id="auth-links" class="auth-links">
+                <a href="login.html">Login</a>
+                <span>/</span>
+                <a href="register.html">Register</a>
+            </div>
+            <div id="cart-anchor" class="header-cart">
+                <button id="open-cart-btn" class="header-cart-btn" aria-label="Shopping Cart">
+                    <i class="fas fa-shopping-cart"></i>
+                     Cart (<span id="cart-count" class="cart-count">0</span>)
+                </button>
+            </div>
+        </div>
+        <div class="hamburger-menu" id="hamburger-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</header>
+
+<!-- Mobile Navigation -->
+<div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>
+<nav class="mobile-nav" id="mobile-nav">
+    <div class="mobile-nav-menu">
+        <a href="index.html#products">Collection</a>
+        <a href="index.html#philosophy">Technologies</a>
+        <div id="mobile-auth-links">
+            <a href="login.html">Login</a>
+            <a href="register.html">Register</a>
+        </div>
+        <div id="mobile-user-actions" style="display: none;">
+            <a href="profile.html">Profile</a>
+            <a href="admin.html" id="mobile-admin-link" style="display: none;">Admin</a>
+            <a href="#" id="mobile-logout-btn">Logout</a>
+        </div>
+    </div>
+    <div class="mobile-nav-actions">
+        <a href="#" class="mobile-cart-btn" id="mobile-open-cart-btn">
+            <i class="fas fa-shopping-cart"></i>
+            Cart (<span id="mobile-cart-count">0</span>)
+        </a>
+    </div>
+</nav>
+
+<main>
+    <section id="checkout-page">
+        <div class="container">
+            <div id="guest-checkout-prompt" class="auth-container" style="display: none; text-align: center;">
+                <h1 class="page-title">Almost there!</h1>
+                <p style="color: var(--text-secondary); margin-bottom: 2rem;">
+                    To test the checkout flow, please log in or create a demo account.
+                </p>
+                <a href="login.html" id="guest-login-btn" class="btn-primary" style="width: 100%; margin-bottom: 1rem;">Login</a>
+                <a href="register.html" class="btn-secondary" style="display: block; width: 100%;">Register</a>
+            </div>
+
+            <div class="checkout-layout">
+                <div class="shipping-details">
+                    <form id="payment-form" class="auth-form">
+                        <h1 class="page-title" style="text-align: left;">Shipping & Payment</h1>
+                        
+                        <h3 class="page-subtitle" style="margin-top:2rem;">Contact Information</h3>
+                        <div id="link-authentication-element"></div>
+                        
+                        <h3 class="page-subtitle" style="margin-top:2rem;">Shipping Address</h3>
+                        <div id="shipping-address-group">
+                            <div class="form-group"><label for="fullName">Full Name</label><input type="text" id="fullName" required></div>
+                            <div class="form-group"><label for="phoneNumber">Phone Number</label><input type="tel" id="phoneNumber" placeholder="For delivery updates" required></div>
+                            <div class="form-group"><label for="address">Street Address</label><input type="text" id="address" required></div>
+                            <div class="form-group"><label for="city">City</label><input type="text" id="city" required></div>
+                            <div class="form-group"><label for="postalCode">Postal Code</label><input type="text" id="postalCode" required></div>
+                        </div>
+
+                        <div style="background-color: #5c1a24; padding: 1rem; border-radius: 5px; margin: 2.5rem 0;">
+                            <h4 style="margin-bottom: 0.5rem; font-family: var(--font-heading);">Demonstration Only</h4>
+                            <p style="margin: 0; font-size: 0.9rem; color: var(--text-primary); line-height: 1.5;">
+                                This is a <strong>test transaction environment</strong> powered by Stripe. Please use a test card number (like 4242 4242 4242 4242) and do not enter real financial information.
+                            </p>
+                        </div>
+
+                        <h3 class="page-subtitle" style="margin-top:2.5rem;">Payment Details</h3>
+                        <div id="payment-element"></div>
+                        
+                        <button id="submit" class="btn-primary" style="width:100%; margin-top: 2rem;">
+                            <span id="button-text">Pay Now</span>
+                            <span id="spinner" style="display: none;">Processing...</span>
+                        </button>
+                        
+                        <div id="payment-message" class="error-message" style="margin-top:1rem;"></div>
+                    </form>
+                </div>
+
+                <div id="order-summary" class="order-summary">
+                    <h2>Your Order</h2>
+                    <div id="summary-items-container"><div class="spinner-container"><div class="spinner"></div></div></div>
+                    <div class="summary-line total-line">
+                        <span>Total</span>
+                        <span id="summary-total">$0.00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2025 Borealis. A Full-Stack Portfolio Project.</p>
+    </div>
+</footer>
+
+<div id="cart-modal-overlay" class="modal-overlay"></div>
+<div id="cart-modal" class="cart-modal">
+    <div class="cart-modal-header">
+        <h2>Your Cart</h2>
+        <button id="cart-modal-close-btn" class="modal-close-btn">&times;</button>
+    </div>
+    <div id="cart-modal-content" class="cart-modal-content">
+    </div>
+    <div class="cart-modal-footer">
+        <div class="summary-line">
+            <span>Subtotal</span>
+            <span id="cart-modal-subtotal">$0.00</span>
+        </div>
+        <a href="checkout.html" class="btn-checkout">Proceed to Checkout</a>
+    </div>
+</div>
+
+<script src="shared.js"></script>
+<script src="checkout.js"></script>
+
+</body>
+</html>

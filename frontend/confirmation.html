@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmed - Borealis</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">    
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        #confirmation-page {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .confirmation-box {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .success-checkmark {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 2rem;
+        }
+        .success-checkmark__circle {
+            stroke-dasharray: 166;
+            stroke-dashoffset: 166;
+            stroke-width: 2;
+            stroke-miterlimit: 10;
+            stroke: var(--accent-color);
+            fill: none;
+            animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+        }
+        .success-checkmark__check {
+            transform-origin: 50% 50%;
+            stroke-dasharray: 48;
+            stroke-dashoffset: 48;
+            stroke: var(--accent-color);
+            animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+        }
+        @keyframes stroke {
+            100% { stroke-dashoffset: 0; }
+        }
+
+        .confirmation-box .page-title {
+            font-size: 2.5rem; 
+            margin-bottom: 1rem;
+        }
+        
+        .confirmation-box p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            max-width: 450px; 
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        #order-id-container {
+            margin-bottom: 2.5rem;
+        }
+
+        #order-id {
+            font-family: monospace;
+            background: var(--bg-light);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            border: 1px solid #333;
+            color: var(--text-primary);
+        }
+    </style>
+</head>
+<body class="other-page">
+    <main>
+        <section id="confirmation-page">
+            <div class="confirmation-box">
+
+                <svg class="success-checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                    <circle class="success-checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
+                    <path class="success-checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                </svg>
+                
+                <!-- MODIFIED TEXT -->
+                <h1 class="page-title">Checkout Successful!</h1>
+                <p>This page confirms that the checkout and order creation logic has executed successfully. If you used a real email, you should receive a sample confirmation from SendGrid.</p>
+                
+                <div id="order-id-container">
+                    <p style="margin-bottom: 0.75rem;">Generated Order ID:</p>
+                    <span id="order-id">Loading...</span>
+                </div>
+                
+                <a href="index.html" class="btn-primary">Continue Exploring</a>
+            </div>
+        </section>
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const orderId = params.get('orderId');
+            const orderIdSpan = document.getElementById('order-id');
+
+            if (orderId && orderIdSpan) {
+                orderIdSpan.textContent = orderId;
+            } else if (orderIdSpan) {
+                orderIdSpan.textContent = 'N/A';
+            }
+        });
+    </script>
+<body>
+</html>
