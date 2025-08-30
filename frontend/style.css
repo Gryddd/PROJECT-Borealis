@@ -1639,4 +1639,15 @@ body.mobile-menu-open .logo {
     transform: translate(-50%, 0);
     opacity: 1;
 }
-/* END: Mobile Toast Notification */
+.hero-subheading,
+.hero-content p,
+.page-title,
+.section-title,
+.card-content h3,
+.main-nav a,
+.tech-card h3,
+.modal-content .product-title,
+.modal-content .product-price {
+    /* A soft, dark shadow slightly below the text */
+    text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+}
